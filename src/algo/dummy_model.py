@@ -1,7 +1,8 @@
 import logging
 
 from sklearn.base import BaseEstimator, TransformerMixin
-from sklearn.linear_model import LinearRegression
+from sklearn.ensemble import RandomForestClassifier
+#from sklearn.linear_model import LinearRegression
 
 
 def create_features(df_stock, nlags=10):
@@ -27,7 +28,7 @@ class Stock_model(BaseEstimator, TransformerMixin):
 
     def __init__(self, data_fetcher):
         self.log = logging.getLogger()
-        self.lr = LinearRegression()
+        self.lr = RandomForestClassifier(max_depth=5, random_state=0)
         self._data_fetcher = data_fetcher
         self.log.warning('here')
 
